@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #87CEEB;
+        }
+
+        #girasol-central {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 350px;
+            /* Ajusta el ancho según el tamaño de tu imagen */
+            height: auto;
+        }
+
+        .girasol {
+            position: absolute;
+            animation: girasol-fall 5s linear infinite, girasol-spin 15s linear infinite;
+        }
+
+        @keyframes girasol-fall {
+            0% {
+                top: -10%;
+                left: calc(5% + (90% * random()));
+            }
+            100% {
+                top: 110%;
+                left: calc(5% + (90% * random()));
+            }
+        }
+
+        @keyframes girasol-fall {
+            0% {
+                top: -10%;
+                left: calc(5% + (90% * random()));
+                opacity: 1;
+            }
+            100% {
+                top: 110%;
+                left: calc(5% + (90% * random()));
+                opacity: 0;
+            }
+        }
+
+
+        @keyframes girasol-spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <img src="girasol3.png" id="girasol-central" 
+    alt="Girasol Central" >
+
+    <script>
+        function createRandomGirasol() {
+                const girasol = document.createElement('img');
+                girasol.src = 'girasol2.png';
+                girasol.classList.add('girasol');
+                girasol.style.left = `${Math.random() * 100}vw`;
+                girasol.style.right = `${Math.random() * 100}vw`;
+                document.body.appendChild(girasol);
+
+                girasol.addEventListener('animationiteration', () => {
+                    girasol.style.left = `${Math.random() * 100}vw`;
+                    girasol.style.right = `${Math.random() * 100}vw`;
+                });
+            }
+
+            setInterval(createRandomGirasol, 1000); // Cambia la velocidad de la lluvia de girasoles aquí
+    </script>
+</body>
+
+</html>
